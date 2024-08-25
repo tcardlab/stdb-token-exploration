@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "jsx": "react-native",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "rootDir": ".",
+    "noEmit": true,
+    "types": [
+      "node",
+      "@imlib/core/runtime.d.ts"
+    ],
+    "typeRoots": ["./node_modules/@types", "./node_modules"],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "baseUrl": ".",
+    "paths": {
+      "@clockworklabs/spacetimedb-sdk": ["node_modules/@clockworklabs/spacetimedb-sdk/dist"]
+    }
+  }
+}

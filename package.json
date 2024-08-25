@@ -1,0 +1,31 @@
+{
+  "name": "project",
+  "version": "0.0.0",
+  "bin": {
+    "stdb": "./.spacetime/spacetime"
+  },
+  "scripts": {
+    "postinstall": "npm run stdb:dl",
+
+    "stdb:dl": "npx tsx scripts/install 0.10.0",
+    "stdb:gen": "stdb generate --lang ts --out-dir site/module_bindings --project-path server && npx tsx scripts/gen_sfe site/module_bindings",
+    
+    "start": "npm run start:Full",
+    "start:Full": "npx tsx scripts/start publish",
+    "start:Fast": "npx tsx scripts/start",
+    "start:FE": "npx imlib dev",
+
+    "generate": "imlib generate",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^22.2.0",
+    "tar": "^7.4.3",
+    "typescript": "^5.5.4",
+    "tsx": "^4.17.0"
+  },
+  "dependencies": {
+    "@clockworklabs/spacetimedb-sdk": "0.10.0",
+    "@imlib/core": "2.5.9"
+  }
+}
