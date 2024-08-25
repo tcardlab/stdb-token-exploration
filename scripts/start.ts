@@ -12,7 +12,7 @@ try {
   console.log(err.toString())
 }
 try {
-  execSync(`stdb server set-default http://localhost:${port}`)
+  execSync(`stdb server set-default --server http://localhost:${port}`)
 } catch (err:any) {
   console.log(err.toString())
 }

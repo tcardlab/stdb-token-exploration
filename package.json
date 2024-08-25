@@ -7,7 +7,7 @@
   "scripts": {
     "postinstall": "npm run stdb:dl",
 
-    "stdb:dl": "npx tsx scripts/install 0.10.0",
+    "stdb:dl": "npx tsx scripts/install 0.11.0",
     "stdb:gen": "stdb generate --lang ts --out-dir site/module_bindings --project-path server && npx tsx scripts/gen_sfe site/module_bindings",
     
     "start": "npm run start:Full",
@@ -25,7 +25,7 @@
     "tsx": "^4.17.0"
   },
   "dependencies": {
-    "@clockworklabs/spacetimedb-sdk": "0.10.0",
+    "@clockworklabs/spacetimedb-sdk": "0.11.0",
     "@imlib/core": "2.5.9"
   }
 }

@@ -51,6 +51,16 @@ export default function (client:SpacetimeDBClient) {
         client.identity = extract_id(client.token!);
         client['runtime'].auth_token = client.token!;
         ([window.global_token,window.global_identity] = [client.token, client.identity]);
+
+        // console.log(client.token)
+        // let res = await fetch(`http://localhost:4000/identity/websocket_token`, {
+        //   "headers": {
+        //     "authorization": `Basic ${btoa('token:'+client.token)}`,
+        //   },
+        //   "method": "POST"
+        // });
+        // console.log(await res.json())
+
         setTimeout(()=>client.connect('ws://localhost:4000', 'project', client.token).then(()=>{
           console.log(`reconnect - I don't know that this actually does anything`)
           client.subscribe([
