@@ -16,6 +16,8 @@ export default function (client:SpacetimeDBClient) {
   client.onConnect(async (token, identity)=>{
     const urlParams = new URLSearchParams(client?.['ws']?.url);
     const isTokenValid = urlParams.get('token');
+
+    console.log('Identity:', identity?.toHexString())
     
     // A more official way to do this would be nice
     if(initToken && !isTokenValid) {
@@ -44,9 +46,10 @@ export default function (client:SpacetimeDBClient) {
           ])
         }), 2e3) */
 
-        // Just set new token and call it a day.
-        client.token = await gen_token()
+        // Just Updating Client Properties:
+        /* client.token = await gen_token();
         client.identity = extract_id(client.token!);
+        client['runtime'].auth_token = client.token!;
         ([window.global_token,window.global_identity] = [client.token, client.identity]);
         setTimeout(()=>client.connect('ws://localhost:4000', 'project', client.token).then(()=>{
           console.log(`reconnect - I don't know that this actually does anything`)
@@ -54,11 +57,18 @@ export default function (client:SpacetimeDBClient) {
             "SELECT * FROM User",
             "SELECT * FROM Message"
           ])
-        }), 1e3)
+        }), 1e3) */
+        // Note: Self will be unknown as new ID's are added by connect reducer... which we can't redo this way
 
         // Reload to get fresh token
         // (This causes infinite loop given we hard code bad token)
         // location.reload()
+
+
+        client.disconnect()
+        client.live = false   // allows connect to run again
+        initToken = undefined // to pretend as though we never had a token
+        client.connect('ws://localhost:4000', 'project', undefined)
       }
 
       return
